@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 
 import '../../node_modules/react-vis/dist/style.css';
 import {
-  XYPlot,
+  FlexibleXYPlot,
   LineSeries,
   VerticalGridLines,
   HorizontalGridLines,
   XAxis,
   YAxis,
 } from 'react-vis';
+
+import './RatingsPlotter.css'
 
 class RatingsPlotter extends Component {
   // React seems to think that the props are always different, I think because
@@ -51,15 +53,13 @@ class RatingsPlotter extends Component {
   render() {
     this.updateLineSeries()
     return (
-      <div className="App">
-        <XYPlot height={400} width={700}>
+      <FlexibleXYPlot>
         <VerticalGridLines />
         <HorizontalGridLines />
         <XAxis />
         <YAxis />
         {this.ratings}
-        </XYPlot>
-      </div>
+      </FlexibleXYPlot>
     );
   }
 }
