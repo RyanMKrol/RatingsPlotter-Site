@@ -13,14 +13,12 @@ import './AppRouter.css';
 
 export default function AppRouter() {
   return (
-    <div id="root-container">
-      <Router>
-        <Switch>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>
-      </Router>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   )
 }
