@@ -40,6 +40,8 @@ class Home extends Component {
           .then((response) => {
             this.setState({
               seriesData: response,
+              seriesName: response.Title,
+              seriesId: response.imdbID,
             })
           })
 
@@ -52,6 +54,8 @@ class Home extends Component {
           .then((response) => {
             this.setState({
               seriesData: response,
+              seriesName: response.Title,
+              seriesId: response.imdbID,
             })
           })
 
