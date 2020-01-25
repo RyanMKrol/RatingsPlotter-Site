@@ -60,7 +60,10 @@ class Home extends Component {
 
   render() {
     const seriesPlot = (typeof this.state.seriesData !== 'undefined') ?
-      <RatingsPlotter ratings={this.state.seriesData}/>:
+      <RatingsPlotter ratings={Object.values(this.state.seriesData.ratings)}/>:
+      null
+    const poster = (typeof this.state.seriesData !== 'undefined') ?
+      <img src={this.state.seriesData.Poster}/>:
       null
 
     return (
@@ -79,8 +82,8 @@ class Home extends Component {
           </label>
           <input type="submit" value="Submit" />
         </form>
-        <div>
-          {seriesPlot}
+        <div className="home-page-content">
+          {seriesPlot}{poster}
         </div>
       </div>
     );

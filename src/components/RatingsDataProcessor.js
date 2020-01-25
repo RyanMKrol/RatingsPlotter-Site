@@ -17,7 +17,7 @@ class RatingsDataProcessor {
     return fetch(endpoint).then((response) => {
       return response.json()
     }).then((ratingsData) => {
-      return Object.values(ratingsData.ratings)
+      return ratingsData
     })
   }
 
