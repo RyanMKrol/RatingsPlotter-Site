@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+
+import TextField from '@material-ui/core/TextField';
+
 import { API_CALL_TYPES, RatingsDataProcessor, RatingsPlotter } from './../components'
 
 import './Home.css';
@@ -67,23 +70,44 @@ class Home extends Component {
       null
 
     return (
-      <div>
+      <div className="page-container">
+        <div className="Home">
         <form onSubmit={(event) => {this.handleSubmit(event, API_CALL_TYPES.NAME)}}>
-          <label>
-            Series Name:
-            <input type="text" value={this.state.seriesName} onChange={(event) => {this.handleChange(event, API_CALL_TYPES.NAME)}} />
-          </label>
-          <input type="submit" value="Submit" />
+          <TextField
+            id="standard-full-width"
+            label="Series Name"
+            placeholder="TV Series Name"
+            helperText="Find the data you want using plain old English!"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={this.state.seriesName} onChange={(event) => {this.handleChange(event, API_CALL_TYPES.NAME)}}
+          />
         </form>
         <form onSubmit={(event) => {this.handleSubmit(event, API_CALL_TYPES.ID)}}>
-          <label>
-            Series ID:
-            <input type="text" value={this.state.seriesId} onChange={(event) => {this.handleChange(event, API_CALL_TYPES.ID)}} />
-          </label>
-          <input type="submit" value="Submit" />
+          <TextField
+            id="standard-full-width"
+            label="Series ID"
+            placeholder="TV Series ID"
+            helperText="Find the data you want using the IMDb ID! i.e. For Game Of Thrones - https://www.imdb.com/title/tt0944947/?ref_=fn_al_tt_1, the ID is tt0944947"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            value={this.state.seriesId} onChange={(event) => {this.handleChange(event, API_CALL_TYPES.ID)}}
+          />
         </form>
-        <div className="home-page-content">
-          {seriesPlot}{poster}
+          <div className="home-page-content">
+            <div className="home-page-plot">
+              {seriesPlot}
+            </div>
+            <div className="home-page-poster">
+              {poster}
+            </div>
+          </div>
         </div>
       </div>
     );
