@@ -1,0 +1,13 @@
+# This script will sit on the host you want to deploy the site too.
+# This should live wherever the home directory is
+
+cd ~
+rm -rf ryankrol.co.uk
+git clone https://github.com/RyanMKrol/BaseNodeReactProject.git
+cd BaseNodeReactProject
+git pull
+npm install
+npm run build
+pm2 delete BaseNodeReactProject
+pm2 start runSite.js --name BaseNodeReactProject
+pm2 save
