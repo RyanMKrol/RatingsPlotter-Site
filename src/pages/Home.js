@@ -1,11 +1,7 @@
 import React, { Component } from 'react'
+import { API_CALL_TYPES, RatingsDataProcessor, RatingsPlotter } from './../components'
 
 import './Home.css';
-
-const apiCallTypes = {
-  NAME: 'seriesName',
-  ID: 'seriesId',
-}
 
 class Home extends Component {
   constructor(props) {
@@ -13,7 +9,7 @@ class Home extends Component {
     this.state = {
       seriesName: '',
       seriesId: '',
-      submittedData: undefined,
+      seriesData: undefined,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -33,42 +29,59 @@ class Home extends Component {
     // we check to see if the data has changed before updating the state because
     // fetching the data is a heavy task that we only want to do if we have new input
     switch(apiType) {
-      case apiCallTypes.NAME:
+      case API_CALL_TYPES.NAME:
         if (this.state.submittedData === this.state.seriesName) return
 
-        this.setState({
-          submittedData: this.state.seriesName,
-        })
+        new RatingsDataProcessor(apiType, this.state.seriesName)
+          .fetchSeasonsRatings()
+          .then((response) => {
+            this.setState({
+              seriesData: response,
+            })
+          })
 
-        return;
-      case apiCallTypes.ID:
+        break;
+      case API_CALL_TYPES.ID:
         if (this.state.submittedData === this.state.seriesId) return
 
-        this.setState({
-          submittedData: this.state.seriesId,
-        })
+        new RatingsDataProcessor(apiType, this.state.seriesId)
+          .fetchSeasonsRatings()
+          .then((response) => {
+            this.setState({
+              seriesData: response,
+            })
+          })
 
-        return;
+        break;
+      default:
+        throw new Error('Could not determine which API to call')
     }
   }
 
   render() {
+    const seriesPlot = (typeof this.state.seriesData !== 'undefined') ?
+      <RatingsPlotter ratings={this.state.seriesData}/>:
+      null
+
     return (
       <div>
-        <form onSubmit={(event) => {this.handleSubmit(event, apiCallTypes.NAME)}}>
+        <form onSubmit={(event) => {this.handleSubmit(event, API_CALL_TYPES.NAME)}}>
           <label>
             Series Name:
-            <input type="text" value={this.state.seriesName} onChange={(event) => {this.handleChange(event, apiCallTypes.NAME)}} />
+            <input type="text" value={this.state.seriesName} onChange={(event) => {this.handleChange(event, API_CALL_TYPES.NAME)}} />
           </label>
           <input type="submit" value="Submit" />
         </form>
-        <form onSubmit={(event) => {this.handleSubmit(event, apiCallTypes.ID)}}>
+        <form onSubmit={(event) => {this.handleSubmit(event, API_CALL_TYPES.ID)}}>
           <label>
             Series ID:
-            <input type="text" value={this.state.seriesId} onChange={(event) => {this.handleChange(event, apiCallTypes.ID)}} />
+            <input type="text" value={this.state.seriesId} onChange={(event) => {this.handleChange(event, API_CALL_TYPES.ID)}} />
           </label>
           <input type="submit" value="Submit" />
         </form>
+        <div>
+          {seriesPlot}
+        </div>
       </div>
     );
   }
