@@ -1,17 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders router only when rendered 1`] = `
-<div
-  id="root-container"
->
-  <BrowserRouter>
-    <Switch>
-      <Route
-        path="/"
-      >
-        <Home />
-      </Route>
-    </Switch>
-  </BrowserRouter>
-</div>
+<BrowserRouter>
+  <Switch>
+    <Route
+      path="/"
+    >
+      <Home />
+    </Route>
+  </Switch>
+</BrowserRouter>
 `;

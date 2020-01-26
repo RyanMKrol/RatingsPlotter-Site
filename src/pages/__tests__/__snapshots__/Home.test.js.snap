@@ -2,19 +2,73 @@
 
 exports[`renders Home only when rendered 1`] = `
 <div
-  className="page-body"
+  className="page-container"
 >
   <div
     className="Home"
   >
-    <img
-      alt="logo"
-      className="Home-logo"
-      src="logo.svg"
-    />
-    <p>
-      Home Page - Under Development!
-    </p>
+    <form
+      onSubmit={[Function]}
+    >
+      <WithStyles(ForwardRef(TextField))
+        InputLabelProps={
+          Object {
+            "shrink": true,
+          }
+        }
+        fullWidth={true}
+        helperText="Find the data you want using plain old English!"
+        id="standard-full-width"
+        label="Series Name"
+        margin="normal"
+        onChange={[Function]}
+        placeholder="TV Series Name"
+        value=""
+      />
+      <WithStyles(ForwardRef(Button))
+        color="primary"
+        type="submit"
+        variant="contained"
+      >
+        Submit
+      </WithStyles(ForwardRef(Button))>
+    </form>
+    <form
+      onSubmit={[Function]}
+    >
+      <WithStyles(ForwardRef(TextField))
+        InputLabelProps={
+          Object {
+            "shrink": true,
+          }
+        }
+        fullWidth={true}
+        helperText="Find the data you want using the IMDb ID! i.e. For Game Of Thrones - https://www.imdb.com/title/tt0944947/?ref_=fn_al_tt_1, the ID is tt0944947"
+        id="standard-full-width"
+        label="Series ID"
+        margin="normal"
+        onChange={[Function]}
+        placeholder="TV Series ID"
+        value=""
+      />
+      <WithStyles(ForwardRef(Button))
+        color="primary"
+        type="submit"
+        variant="contained"
+      >
+        Submit
+      </WithStyles(ForwardRef(Button))>
+    </form>
+    <div
+      className="home-page-content"
+    >
+      <div
+        className="home-page-plot"
+      />
+      <div
+        className="home-page-poster"
+      />
+    </div>
   </div>
 </div>
 `;
