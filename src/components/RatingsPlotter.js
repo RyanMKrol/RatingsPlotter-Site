@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 import '../../node_modules/react-vis/dist/style.css';
 import {
-  FlexibleXYPlot,
+  FlexibleWidthXYPlot,
   LineSeries,
   VerticalGridLines,
   HorizontalGridLines,
@@ -53,13 +53,13 @@ class RatingsPlotter extends Component {
   render() {
     this.updateLineSeries()
     return (
-      <FlexibleXYPlot>
+      <FlexibleWidthXYPlot height={450}>
         <VerticalGridLines />
         <HorizontalGridLines />
         <XAxis />
         <YAxis />
         {this.ratings}
-      </FlexibleXYPlot>
+      </FlexibleWidthXYPlot>
     );
   }
 }
