@@ -59,16 +59,6 @@ exports[`renders Home only when rendered 1`] = `
         Submit
       </WithStyles(ForwardRef(Button))>
     </form>
-    <div
-      className="home-page-content"
-    >
-      <div
-        className="home-page-plot"
-      />
-      <div
-        className="home-page-poster"
-      />
-    </div>
   </div>
 </div>
 `;
