@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
-import TextField from '@material-ui/core/TextField';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 import { API_CALL_TYPES, RatingsDataProcessor, RatingsPlotter } from './../components'
 
@@ -89,6 +90,13 @@ class Home extends Component {
             }}
             value={this.state.seriesName} onChange={(event) => {this.handleChange(event, API_CALL_TYPES.NAME)}}
           />
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+          >
+            Submit
+          </Button>
         </form>
         <form onSubmit={(event) => {this.handleSubmit(event, API_CALL_TYPES.ID)}}>
           <TextField
@@ -103,6 +111,13 @@ class Home extends Component {
             }}
             value={this.state.seriesId} onChange={(event) => {this.handleChange(event, API_CALL_TYPES.ID)}}
           />
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+          >
+            Submit
+          </Button>
         </form>
           <div className="home-page-content">
             <div className="home-page-plot">
