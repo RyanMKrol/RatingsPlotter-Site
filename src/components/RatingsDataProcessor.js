@@ -24,9 +24,9 @@ class RatingsDataProcessor {
   getApiEndpoint() {
     switch(this.currentApiCallType) {
       case API_CALL_TYPES.NAME:
-        return `http://localhost:8000/ratings/name/${this.apiInput}`;
+        return `/api/ratings/name/${this.apiInput}`;
       case API_CALL_TYPES.ID:
-        return `http://localhost:8000/ratings/id/${this.apiInput}`;
+        return `/api/ratings/id/${this.apiInput}`;
       default:
         throw new Error('Could not determine which API to use')
     }
