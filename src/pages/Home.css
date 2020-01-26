@@ -20,6 +20,7 @@
   display: flex;
   flex-wrap: wrap;
   flex: 1 1 auto;
+  padding: 10px 0;
 }
 
 .home-page-plot {
@@ -27,7 +28,6 @@
   margin: auto;
   padding: 10px;
   width: 100%;
-  height: 40%;
 }
 
 .home-page-poster {
