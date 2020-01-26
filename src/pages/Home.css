@@ -23,6 +23,10 @@
   padding: 10px 0;
 }
 
+.home-page-loading {
+  margin:auto;
+}
+
 .home-page-plot {
   text-align: center;
   margin: auto;
