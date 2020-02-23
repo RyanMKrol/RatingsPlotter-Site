@@ -91,7 +91,10 @@ class Home extends Component {
 
     const poster = (!this.state.isLoading && typeof this.state.seriesData !== 'undefined') ?
       <div className="home-page-poster">
-        <img src={this.state.seriesData.Poster}/>
+        <img
+          src={this.state.seriesData.Poster}
+          alt="Series poster"
+        />
       </div>:
       null
 
