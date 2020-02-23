@@ -52,6 +52,10 @@ class RatingsPlotter extends Component {
 
   render() {
     this.updateLineSeries()
+    const listOfTicks = this.props.ratings.map((_, index) => {
+      return `${index+1}`
+    })
+
     return (
       <FlexibleWidthXYPlot
         height={450}
@@ -59,7 +63,9 @@ class RatingsPlotter extends Component {
       >
         <VerticalGridLines />
         <HorizontalGridLines />
-        <XAxis />
+        <XAxis
+          tickValues={listOfTicks}
+        />
         <YAxis />
         {this.ratings}
       </FlexibleWidthXYPlot>
