@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import '../../node_modules/react-vis/dist/style.css';
 import {
   FlexibleWidthXYPlot,
-  LineSeries,
+  LineMarkSeries,
   VerticalGridLines,
   HorizontalGridLines,
   XAxis,
@@ -44,7 +44,7 @@ class RatingsPlotter extends Component {
       return acc
     }, [])
 
-    return <LineSeries
+    return <LineMarkSeries
       data={lineSeriesData}
       key={`currentSeason_${currentSeason}`}
     />
@@ -53,7 +53,10 @@ class RatingsPlotter extends Component {
   render() {
     this.updateLineSeries()
     return (
-      <FlexibleWidthXYPlot height={450}>
+      <FlexibleWidthXYPlot
+        height={450}
+        size={4}
+      >
         <VerticalGridLines />
         <HorizontalGridLines />
         <XAxis />
