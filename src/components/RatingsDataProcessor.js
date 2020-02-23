@@ -17,7 +17,13 @@ class RatingsDataProcessor {
     return fetch(endpoint).then((response) => {
       return response.json()
     }).then((ratingsData) => {
+      if (ratingsData.Error) {
+        throw ratingsData
+      }
       return ratingsData
+    }).catch((error) => {
+      console.log(error)
+      throw error
     })
   }
 

@@ -19,7 +19,8 @@ class Home extends Component {
       seriesName: '',
       seriesId: '',
       seriesData: undefined,
-      isLoading: undefined,
+      isLoading: false,
+      error: undefined,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -40,45 +41,44 @@ class Home extends Component {
     // fetching the data is a heavy task that we only want to do if we have new input
     switch(apiType) {
       case API_CALL_TYPES.NAME:
-        if (this.state.submittedData === this.state.seriesName) return
-
-        this.setState({
-          isLoading: true,
-        }, () => {
-          new RatingsDataProcessor(apiType, this.state.seriesName)
-            .fetchSeasonsRatings()
-            .then((response) => {
-              this.setState({
-                seriesData: response,
-                seriesName: response.Title,
-                seriesId: response.imdbID,
-                isLoading: false,
-              })
-            })
-        })
+        this.fetchSeriesData(apiType, this.state.seriesName)
         break;
       case API_CALL_TYPES.ID:
-        if (this.state.submittedData === this.state.seriesId) return
-
-        this.setState({
-          isLoading: true,
-        }, () => {
-          new RatingsDataProcessor(apiType, this.state.seriesId)
-            .fetchSeasonsRatings()
-            .then((response) => {
-              this.setState({
-                seriesData: response,
-                seriesName: response.Title,
-                seriesId: response.imdbID,
-                isLoading: false,
-              })
-            })
-        })
+        this.fetchSeriesData(apiType, this.state.seriesId)
         break;
       default:
         throw new Error('Could not determine which API to call')
     }
   }
+
+fetchSeriesData(apiType, submitData) {
+  if (this.state.submittedData === submitData) return
+
+  this.setState({
+    isLoading: true,
+    error: undefined,
+  }, () => {
+    new RatingsDataProcessor(apiType, submitData)
+      .fetchSeasonsRatings()
+      .then((response) => {
+        this.setState({
+          seriesData: response,
+          seriesName: response.Title,
+          seriesId: response.imdbID,
+          isLoading: false,
+          error: undefined,
+        })
+      }).catch((error) => {
+        this.setState({
+          seriesData: undefined,
+          seriesName: this.state.seriesName,
+          seriesId: this.state.seriesId,
+          isLoading: false,
+          error: error,
+        })
+      })
+  })
+}
 
   generateContent() {
     if ( typeof this.state.isLoading === 'undefined') return null
@@ -104,11 +104,20 @@ class Home extends Component {
       </div> :
       null
 
+    const error = (this.state.error) ?
+      <div className="home-page-error">
+        <h1>
+          Sorry, could not find the title you're looking for!
+        </h1>
+      </div> :
+      null
+
     return (
       <div className="home-page-content">
         {seriesPlot}
         {poster}
         {loadingIcon}
+        {error}
       </div>
     )
   }
