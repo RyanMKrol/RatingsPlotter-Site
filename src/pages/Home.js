@@ -19,7 +19,8 @@ class Home extends Component {
       seriesName: '',
       seriesId: '',
       seriesData: undefined,
-      isLoading: undefined,
+      isLoading: false,
+      error: undefined,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -55,6 +56,7 @@ fetchSeriesData(apiType, submitData) {
 
   this.setState({
     isLoading: true,
+    error: undefined,
   }, () => {
     new RatingsDataProcessor(apiType, submitData)
       .fetchSeasonsRatings()
@@ -64,6 +66,15 @@ fetchSeriesData(apiType, submitData) {
           seriesName: response.Title,
           seriesId: response.imdbID,
           isLoading: false,
+          error: undefined,
+        })
+      }).catch((error) => {
+        this.setState({
+          seriesData: undefined,
+          seriesName: this.state.seriesName,
+          seriesId: this.state.seriesId,
+          isLoading: false,
+          error: error,
         })
       })
   })
@@ -93,11 +104,20 @@ fetchSeriesData(apiType, submitData) {
       </div> :
       null
 
+    const error = (this.state.error) ?
+      <div className="home-page-error">
+        <h1>
+          Sorry, could not find the title you're looking for!
+        </h1>
+      </div> :
+      null
+
     return (
       <div className="home-page-content">
         {seriesPlot}
         {poster}
         {loadingIcon}
+        {error}
       </div>
     )
   }
