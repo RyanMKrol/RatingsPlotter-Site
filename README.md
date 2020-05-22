@@ -1,5 +1,5 @@
 # RatingsPlotter-Site
-This site lets you plot TV series by episode ratings!
+Want to check if your friends TV recommendations are worth listening to? Look no further! This site lets you easily plot a TV shows episode ratings!
 
 ## Usage
 * Head to http://plotatvseries.xyz/
