@@ -7,9 +7,7 @@ exports[`renders Home only when rendered 1`] = `
   <div
     className="Home"
   >
-    <form
-      onSubmit={[Function]}
-    >
+    <form>
       <WithStyles(ForwardRef(TextField))
         InputLabelProps={
           Object {
@@ -21,6 +19,7 @@ exports[`renders Home only when rendered 1`] = `
         id="standard-full-width"
         label="Series Name"
         margin="normal"
+        name="seriesName"
         onChange={[Function]}
         placeholder="TV Series Name"
         value=""
@@ -33,9 +32,7 @@ exports[`renders Home only when rendered 1`] = `
         Submit
       </WithStyles(ForwardRef(Button))>
     </form>
-    <form
-      onSubmit={[Function]}
-    >
+    <form>
       <WithStyles(ForwardRef(TextField))
         InputLabelProps={
           Object {
@@ -47,6 +44,7 @@ exports[`renders Home only when rendered 1`] = `
         id="standard-full-width"
         label="Series ID"
         margin="normal"
+        name="seriesId"
         onChange={[Function]}
         placeholder="TV Series ID"
         value=""
