@@ -53,8 +53,6 @@ class RatingsPlotter extends Component {
       return acc;
     }, []);
 
-    console.log(lineSeriesData);
-
     return (
       <LineMarkSeries
         data={lineSeriesData}
